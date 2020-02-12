@@ -17,6 +17,7 @@ This library had all feature expect the below ones
 
 This custom module merge and handle all in one place data.json inside data_path, refer: demo.py
 
+```JSON
  {
     "intents": {
         "greetings": {
@@ -32,6 +33,7 @@ This custom module merge and handle all in one place data.json inside data_path,
         "names": [ "senthil", "jarvis" ]
     }
 }
+```
 
 ## Features
 
