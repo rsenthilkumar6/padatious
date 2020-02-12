@@ -1,15 +1,37 @@
 {
     "intents": {
         "greetings": {
-            "intent": [ "hi(|{name})", "hello" ],
-            "response": [ "hii", "helloo" ]
+            "intent": [
+                "hi(|{name})",
+                "hello"
+            ],
+            "response": [
+                "hii",
+                "helloo"
+            ]
         },
         "alarm": {
-            "intent": [ "change alaram"],
-            "response": [ "okay(| done)" ]
+            "intent": [
+                "change alaram",
+                "move my alarm from {from-time} to {to-time}"
+            ],
+            "response": [
+                "okay(| done)"
+            ]
+        },
+        "welcome": {
+            "intent": [
+                "welcome(| back)"
+            ],
+            "response": [
+                "okay(| response)"
+            ]
         }
     },
     "entities": {
-        "names": [ "senthil", "jarvis" ]
+        "names": [
+            "senthil",
+            "jarvis"
+        ]
     }
 }

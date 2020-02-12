@@ -94,7 +94,7 @@ class FnnClassifier(object):
 			if name in json_data["intents"]:
 				source = json_data["intents"][name]["intent"]
 				target = lines
-				result = source + list( set(targt) - set(source) )
+				result = source + list( set(target) - set(source) )
 				json_data["intents"][name]["intent"] = result
 			else:
 				json_data["intents"][name] = {
@@ -143,16 +143,16 @@ class FnnClassifier(object):
 		with open( self.cache_path + 'response.json', 'r') as data_json:
 			json_data = json.load(data_json)
 
-			if name in json_data["intents"]:
-				source = json_data["intents"][name]
+			if name in json_data:
+				source = json_data[name]
 				target = lines
 				result = source + list( set(targt) - set(source) )
-				json_data["intents"][name] = result
+				json_data[name] = result
 			else:
-				json_data["intents"][name] = lines
+				json_data[name] = lines
 
 		with open(self.cache_path + 'response.json', 'w') as fp:
-			json.dump(json_data, pf)
+			json.dump(json_data, fp)
 
 		json_data = None
 		with open( self.data_path + 'data.json', 'r') as data_json:
@@ -167,8 +167,8 @@ class FnnClassifier(object):
 				else:
 					json_data["intents"][name]["response"] = lines
 
-		with open(self.cache_path + 'response.json', 'w') as fp:
-			json.dump(json_data, pf)
+		with open(self.data_path + 'data.json', 'w') as fp:
+			json.dump(json_data, fp)
    
 
 # reload_cache = len(sys.argv) > 1 and sys.argv[1] == '-r'
@@ -195,6 +195,7 @@ container.load()
 container.train()
 
 container.add_intent(name="welcome", lines=["welcome(| back)"], reload_cache=True)
+container.add_response(name="welcome", lines=["okay(| response)"])
 
 query = None
 while query != 'q':
