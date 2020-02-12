@@ -57,7 +57,8 @@ class IntentContainer(object):
         self.entities = EntityManager(cache_dir)
         self.padaos = padaos.IntentContainer()
         self.train_thread = None  # type: Thread
-        self.serialized_args = []  # Arguments of all calls to register intents/entities
+        self.serialized_args = []  # Arguments of all calls to register intents/entities    
+        self.response_data = {}    
 
     def clear(self):
         os.makedirs(self.cache_dir, exist_ok=True)
@@ -221,6 +222,10 @@ class IntentContainer(object):
         Returns:
             bool: True if training succeeded without timeout
         """
+
+        with open(self.cache_dir + 'response.json', 'r') as fp:
+            self.response_data = json.load(fp)
+
         if not self.must_train and not force:
             return
         self.padaos.compile()
@@ -285,9 +290,12 @@ class IntentContainer(object):
         }
         sent = tokenize(query)
         for perfect_match in self.padaos.calc_intents(query):
-            name = perfect_match['name']
+            name = perfect_match['name']      
+            print(f"name: {name}")      
+            print(f"response: {self.response_data.get(name, None)}")
             intents[name] = MatchData(
-                name, sent, matches=perfect_match['entities'], conf=1.0)
+                name, sent, matches=perfect_match['entities'], conf=1.0, response=self.response_data.get(name, None))    
+            
         return list(intents.values())
 
     def calc_intent(self, query):

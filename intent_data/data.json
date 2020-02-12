@@ -1,0 +1,15 @@
+{
+    "intents": {
+        "greetings": {
+            "intent": [ "hi(|{name})", "hello" ],
+            "response": [ "hii", "helloo" ]
+        },
+        "alarm": {
+            "intent": [ "change alaram"],
+            "response": [ "okay(| done)" ]
+        }
+    },
+    "entities": {
+        "names": [ "senthil", "jarvis" ]
+    }
+}

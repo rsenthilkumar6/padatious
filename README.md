@@ -7,6 +7,32 @@
 
 An efficient and agile neural network intent parser. Padatious is a core component of [Mycroft AI](https://mycroft.ai). 
 
+
+## Custom Build
+
+This library had all feature expect the below ones
+
+ - There was no way to provide response for intent
+ - configuration of intent/entities are spread across
+
+This custom module merge and handle all in one place data.json inside data_path, refer: demo.py
+
+ {
+    "intents": {
+        "greetings": {
+            "intent": [ "hi(|{name})", "hello" ],
+            "response": [ "hii", "helloo" ]
+        },
+        "alarm": {
+            "intent": [ "change alaram"],
+            "response": [ "okay(| done)" ]
+        }
+    },
+    "entities": {
+        "names": [ "senthil", "jarvis" ]
+    }
+}
+
 ## Features
 
  - Intents are easy to create

@@ -24,11 +24,12 @@ class MatchData(object):
         matches (dict of str -> str): Key is the name of the entity and
             value is the extracted part of the sentence
     """
-    def __init__(self, name, sent, matches=None, conf=0.0):
+    def __init__(self, name, sent, matches=None, conf=0.0, response=None):
         self.name = name
         self.sent = sent
         self.matches = matches or {}
         self.conf = conf
+        self.response = response or []
 
     def __getitem__(self, item):
         return self.matches.__getitem__(item)

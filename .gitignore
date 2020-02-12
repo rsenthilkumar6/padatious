@@ -3,10 +3,17 @@ dist/
 .idea/
 *.egg-info
 intent_cache/
+intent_data/*.intent
+intent_data/*.entity
+intent_data/*.response
+
+
 __pycache__/
 *.pyc
 .pytest_cache/
 *venv/
+.devcontainer/
+.vscode/
 
 .cache/
 .coverage*
