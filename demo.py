@@ -146,7 +146,7 @@ class FnnClassifier(object):
 			if name in json_data:
 				source = json_data[name]
 				target = lines
-				result = source + list( set(targt) - set(source) )
+				result = source + list( set(target) - set(source) )
 				json_data[name] = result
 			else:
 				json_data[name] = lines
@@ -160,9 +160,9 @@ class FnnClassifier(object):
 
 			if name in json_data["intents"]:
 				if "response" in json_data["intents"][name]:
-					source = json_data[name]["response"]
+					source = json_data["intents"][name]["response"]
 					target = lines
-					result = source + list( set(targt) - set(source) )
+					result = source + list( set(target) - set(source) )
 					json_data["intents"][name]["response"] = result
 				else:
 					json_data["intents"][name]["response"] = lines
